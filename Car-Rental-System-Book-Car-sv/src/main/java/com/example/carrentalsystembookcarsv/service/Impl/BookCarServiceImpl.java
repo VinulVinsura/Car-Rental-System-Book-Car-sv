@@ -6,9 +6,11 @@ import com.example.carrentalsystembookcarsv.enums.BookCarStatus;
 import com.example.carrentalsystembookcarsv.repository.BookCarRepo;
 import com.example.carrentalsystembookcarsv.service.BookCarService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 @Service
 
@@ -34,5 +36,11 @@ public class BookCarServiceImpl implements BookCarService {
         BookCarEntity bookCarEntity = bookCarRepo.save(carEntity);
         return bookCarDto !=null ? modelMapper.map(bookCarEntity, BookCarDto.class) : null;
 
+    }
+
+    @Override
+    public List<BookCarDto> getBookCarDetails(Long userId) {
+        List<BookCarEntity> carEntityList = bookCarRepo.findAllByUserId(userId);
+        return modelMapper.map(carEntityList,new TypeToken<List<BookCarDto>>(){}.getType());
     }
 }
