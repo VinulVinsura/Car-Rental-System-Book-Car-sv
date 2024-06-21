@@ -18,6 +18,7 @@ public class BookCarDto {
     private Long price;
     private Long userId;
     private Integer carId;
+    private Long days;
     private BookCarStatus status;
 
 }

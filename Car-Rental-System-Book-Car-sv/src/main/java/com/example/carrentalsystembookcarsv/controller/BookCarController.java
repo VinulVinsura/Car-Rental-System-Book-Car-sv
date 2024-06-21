@@ -22,6 +22,13 @@ public class BookCarController {
 
     @GetMapping("/findBy-userId/{userId}")
     public List<BookCarDto> getBookCarDetails(@PathVariable Long userId){
+        System.out.println("1");
         return bookCarService.getBookCarDetails(userId);
+    }
+
+    @GetMapping("/get-all-bookings")
+
+    public List<BookCarDto> getAllBookings(){
+        return bookCarService.getAllBookCarDetails();
     }
 }

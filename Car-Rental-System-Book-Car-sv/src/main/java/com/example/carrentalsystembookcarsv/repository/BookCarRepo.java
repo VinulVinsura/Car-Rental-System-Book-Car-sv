@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BookCarRepo extends JpaRepository<BookCarEntity,Integer> {
-    List<BookCarEntity> findAllByUserId(Long userId);
+    List<BookCarEntity> findByUserId(Long userId);
 }

@@ -9,4 +9,6 @@ public interface BookCarService {
 
     BookCarDto bookCarDetails(BookCarDto bookCarDto);
     List<BookCarDto> getBookCarDetails(Long userId);
+
+    List<BookCarDto> getAllBookCarDetails();
 }

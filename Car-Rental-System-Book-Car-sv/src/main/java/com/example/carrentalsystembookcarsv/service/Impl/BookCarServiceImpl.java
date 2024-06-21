@@ -40,7 +40,12 @@ public class BookCarServiceImpl implements BookCarService {
 
     @Override
     public List<BookCarDto> getBookCarDetails(Long userId) {
-        List<BookCarEntity> carEntityList = bookCarRepo.findAllByUserId(userId);
+        List<BookCarEntity> carEntityList = bookCarRepo.findByUserId(userId);
         return modelMapper.map(carEntityList,new TypeToken<List<BookCarDto>>(){}.getType());
+    }
+
+    @Override
+    public List<BookCarDto> getAllBookCarDetails() {
+        return modelMapper.map(bookCarRepo.findAll(),new TypeToken<List<BookCarDto>>(){}.getType());
     }
 }
