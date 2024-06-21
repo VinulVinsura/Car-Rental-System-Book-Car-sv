@@ -28,6 +28,7 @@ public class BookCarController {
 
     @GetMapping("/get-all-bookings")
 
+
     public List<BookCarDto> getAllBookings(){
         return bookCarService.getAllBookCarDetails();
     }
