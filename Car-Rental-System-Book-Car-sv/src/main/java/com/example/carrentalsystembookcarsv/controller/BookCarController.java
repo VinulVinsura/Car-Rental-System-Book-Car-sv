@@ -3,6 +3,7 @@ package com.example.carrentalsystembookcarsv.controller;
 import com.example.carrentalsystembookcarsv.dto.BookCarDto;
 import com.example.carrentalsystembookcarsv.service.BookCarService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,5 +31,11 @@ public class BookCarController {
 
     public List<BookCarDto> getAllBookings(){
         return bookCarService.getAllBookCarDetails();
+    }
+
+    @GetMapping("/changStatus/{id}/{status}")
+    public Boolean changeBookingStatus(@PathVariable Integer id, @PathVariable String status){
+        return bookCarService.changeBookingStatus(id, status);
+
     }
 }

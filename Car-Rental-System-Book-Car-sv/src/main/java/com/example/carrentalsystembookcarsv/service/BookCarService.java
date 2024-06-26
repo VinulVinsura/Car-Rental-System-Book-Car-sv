@@ -11,4 +11,5 @@ public interface BookCarService {
     List<BookCarDto> getBookCarDetails(Long userId);
 
     List<BookCarDto> getAllBookCarDetails();
+    boolean changeBookingStatus(Integer id, String status);
 }

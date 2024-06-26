@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 @Service
 
@@ -47,5 +48,23 @@ public class BookCarServiceImpl implements BookCarService {
     @Override
     public List<BookCarDto> getAllBookCarDetails() {
         return modelMapper.map(bookCarRepo.findAll(),new TypeToken<List<BookCarDto>>(){}.getType());
+    }
+
+    @Override
+    public boolean changeBookingStatus(Integer id, String status) {
+        if ( bookCarRepo.existsById(id)){
+            Optional<BookCarEntity> bookCarEntity = bookCarRepo.findById(id);
+            BookCarEntity carEntity = bookCarEntity.get();
+            if ( status.equals("Approve")){
+                carEntity.setStatus(BookCarStatus.APPROVED);
+            }else {
+                carEntity.setStatus(BookCarStatus.REJECTED);
+            }
+
+            bookCarRepo.save(carEntity);
+            return true;
+
+        }
+        return false;
     }
 }
